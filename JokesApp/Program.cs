@@ -1,4 +1,6 @@
+using JokesApp.BAL;
 using JokesApp.Concrete;
+using JokesApp.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IJokesBusiness, JokesBusiness>();
+builder.Services.AddTransient<IApiService, ApiService>();
+builder.Services.Configure<JokesAPI>(builder.Configuration.GetSection("JokesAPI"));
+builder.Services.Configure<ApiCreds>(builder.Configuration.GetSection("ApiCreds"));
 
 var app = builder.Build();
 

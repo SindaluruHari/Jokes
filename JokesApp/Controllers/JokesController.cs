@@ -1,4 +1,4 @@
-﻿using JokesApp.Concrete;
+﻿using JokesApp.BAL;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JokesApp.Controllers
@@ -6,14 +6,11 @@ namespace JokesApp.Controllers
     [Route("[controller]")]
     public class JokesController : ControllerBase
     {
-
-        private readonly ILogger<JokesController> _logger;
         private readonly IJokesBusiness _jokesBusiness;
 
-        public JokesController(ILogger<JokesController> logger, IJokesBusiness jokesBusiness)
+        public JokesController(IJokesBusiness jokesBusiness)
         {
             _jokesBusiness = jokesBusiness;
-            _logger = logger;
         }
 
         [HttpGet("GetRandomJokes")]
